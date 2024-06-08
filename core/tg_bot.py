@@ -6,9 +6,9 @@ from aiogram import Dispatcher
 from aiogram import types, F
 from aiogram.types import BotCommand
 
-from time_managmant_bot.core.buttons import get_main_keyboard
-from time_managmant_bot.core.config import settings
-from time_managmant_bot.handlers.tasks.router import task_router
+from bot_frontend.core.buttons import get_main_keyboard
+from bot_frontend.core.config import settings
+from bot_frontend.handlers.tasks.router import task_router
 
 bot = Bot(token=settings.BOT_TOKEN)
 dp = Dispatcher(bot=bot)

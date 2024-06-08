@@ -1,9 +1,9 @@
 from aiogram import types, F
 from aiogram.fsm.context import FSMContext
 
-from time_managmant_bot.core.buttons import get_main_keyboard, START_TASK, during_the_task_keyboard
-from time_managmant_bot.handlers.tasks.router import task_router
-from time_managmant_bot.states.do_tasks import TaskState
+from bot_frontend.core.buttons import get_main_keyboard, START_TASK, during_the_task_keyboard
+from bot_frontend.handlers.tasks.router import task_router
+from bot_frontend.states.do_tasks import TaskState
 
 
 @task_router.message(F.text == START_TASK)

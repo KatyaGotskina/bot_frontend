@@ -4,6 +4,9 @@ from pydantic_settings import BaseSettings
 load_dotenv()
 
 
+load_dotenv()
+
+
 class Settings(BaseSettings):
     # TINDER_BACKEND_HOST: str = 'http://web:8000'
 
@@ -17,7 +20,7 @@ class Settings(BaseSettings):
     #
     # LOG_LEVEL: str = ''
     #
-    # RETRY_COUNT: int = 3
+    RETRY_COUNT: int = 3
 
 
 settings = Settings()

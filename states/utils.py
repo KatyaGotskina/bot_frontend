@@ -7,6 +7,7 @@ previous_states = {
     'TaskState:enter_task_name': TaskState.task_worker,
     'TaskState:task_worker': MainState.start_menu,
     'TaskState:complete_task': TaskState.task_worker,
+    'TaskState:show_tasks': TaskState.task_worker,
 }
 
 state_to_keyboard = {

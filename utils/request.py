@@ -1,3 +1,4 @@
+from contextlib import asynccontextmanager
 from typing import Any, Dict, Optional
 
 import aiohttp
@@ -5,6 +6,7 @@ import aiohttp
 from bot_frontend.core.config import settings
 
 
+@asynccontextmanager
 async def do_request(
     url: str,
     params: Optional[Dict[str, Any]] = None,
@@ -26,12 +28,7 @@ async def do_request(
                     json=params,
                     headers=headers,
                 ) as response:
-                    # response.raise_for_status()
-                    try:
-                        await response.json()
-                    except Exception:
-                        pass
-                    return response
+                    yield response
             except aiohttp.ClientResponseError as exc:
                 final_exc = exc
 

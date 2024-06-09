@@ -6,3 +6,5 @@ class TaskState(StatesGroup):
     enter_task_name = State()
     conflict_task = State()
     complete_task = State()
+    show_tasks = State()
+

@@ -25,7 +25,11 @@ async def get_name(message: types.Message, state: FSMContext) -> None:
         await state.set_state(TaskState.task_worker)
         await message.answer(text=task_config.BACK_TO_TASKS_MENU, reply_markup=during_the_task_keyboard())
         return
-    async with do_request(url=f'{settings.BOT_BACKEND_HOST}/task', params={'name': task_name}) as response:
+    async with do_request(
+            url=f'{settings.BOT_BACKEND_HOST}/task',
+            params={'name': task_name},
+            headers={'user_from_id': str(message.from_user.id)}
+    ) as response:
         if response.status == 201:
             await state.set_state(TaskState.task_worker)
             await message.answer(f'засек начало "{task_name}"', reply_markup=during_the_task_keyboard())
@@ -46,7 +50,8 @@ async def work_with_conflict_task(message: types.Message, state: FSMContext) -> 
         task_name = (await state.get_data()).get(f'{message.chat.id}_old_task_name')
         async with do_request(
             url=f'{settings.BOT_BACKEND_HOST}/task',
-            params={'name': task_name, 'forcibly': True}
+            params={'name': task_name, 'forcibly': True},
+            headers={'user_from_id': str(message.from_user.id)},
         ) as response:
             if response.status == 201:
                 await state.set_state(TaskState.task_worker)

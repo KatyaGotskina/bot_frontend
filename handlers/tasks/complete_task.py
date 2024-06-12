@@ -14,7 +14,11 @@ from bot_frontend.utils.request import do_request
 async def complete_task(message: types.Message, state: FSMContext) -> None:
     await state.set_state(TaskState.complete_task)
 
-    async with do_request(url=f'{settings.BOT_BACKEND_HOST}/task/all?undone=True', method='GET') as response:
+    async with do_request(
+            url=f'{settings.BOT_BACKEND_HOST}/task/all?undone=True',
+            method='GET',
+            headers={'user_from_id': str(message.from_user.id)}
+    ) as response:
         if response.status == 200:
             tasks = await response.json()
             if not tasks:
@@ -37,7 +41,8 @@ async def get_and_complete_task(message: types.Message, state: FSMContext) -> No
             async with do_request(
                 url=f'{settings.BOT_BACKEND_HOST}/task/end',
                 method='PATCH',
-                params={'id': task_id}
+                params={'id': task_id},
+                headers={'user_from_id': str(message.from_user.id)}
             ) as response:
                 if response.status == 200:
                     await message.answer('Дело завершено', reply_markup=get_tasks_keyboard())
@@ -51,7 +56,8 @@ async def get_and_complete_task(message: types.Message, state: FSMContext) -> No
 
         async with do_request(
             url=f'{settings.BOT_BACKEND_HOST}/task/all?offset={max_counter}&undone=True',
-            method='GET'
+            method='GET',
+            headers={'user_from_id': str(message.from_user.id)},
         ) as response:
             tasks = await response.json()
             if not tasks:

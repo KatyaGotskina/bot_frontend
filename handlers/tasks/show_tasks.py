@@ -14,7 +14,11 @@ from bot_frontend.utils.request import do_request
 async def show_tasks(message: types.Message, state: FSMContext) -> None:
     await state.set_state(TaskState.show_tasks)
 
-    async with do_request(url=f'{settings.BOT_BACKEND_HOST}/task/all', method='GET') as response:
+    async with do_request(
+            url=f'{settings.BOT_BACKEND_HOST}/task/all',
+            method='GET',
+            headers={'user_from_id': str(message.from_user.id)},
+    ) as response:
         if response.status == 200:
             tasks = await response.json()
             if not tasks:
@@ -41,7 +45,8 @@ async def get_and_show_tasks(message: types.Message, state: FSMContext) -> None:
 
         async with do_request(
             url=f'{settings.BOT_BACKEND_HOST}/task/all?offset={max_counter}',
-            method='GET'
+            method='GET',
+            headers={'user_from_id': str(message.from_user.id)}
         ) as response:
             tasks = await response.json()
             if not tasks:

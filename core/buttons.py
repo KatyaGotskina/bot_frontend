@@ -1,5 +1,5 @@
 from aiogram import types
-
+from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 START_TASK = 'начать дело'
 STOP_TASK = 'завершить дело'
@@ -48,3 +48,9 @@ def get_tasks_keyboard() -> types.ReplyKeyboardMarkup:
 
 def go_back_keyboard() -> types.ReplyKeyboardMarkup:
     return types.ReplyKeyboardMarkup(keyboard=[[types.KeyboardButton(text=GO_BACK)]], resize_keyboard=True)
+
+
+timezone_hours = [str(number) if number <= 0 else f'+{number}' for number in range(-12, 13)]
+timezoneButtons = [InlineKeyboardButton(text=timedelta, callback_data=timedelta) for timedelta in timezone_hours]
+out = [timezoneButtons[i:i + 3] for i in range(0, len(timezoneButtons), 3)]
+timezone_kb = InlineKeyboardMarkup(inline_keyboard=out)

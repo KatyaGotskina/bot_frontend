@@ -13,8 +13,6 @@ async def do_request(
     headers: Optional[Dict[str, Any]] = None,
     method: str = 'POST'
 ) -> Any:
-    if not headers:
-        headers = {"Content-Type": "application/json"}
     timeout = aiohttp.ClientTimeout(total=3)
     connector = aiohttp.TCPConnector()
 

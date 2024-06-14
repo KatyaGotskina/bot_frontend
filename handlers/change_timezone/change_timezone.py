@@ -1,10 +1,10 @@
 from aiogram import F, types
 
-from bot_frontend.core.buttons import timezone_kb, CHANGE_TIME_ZONE, timezone_hours
-from bot_frontend.core.config import settings
-from bot_frontend.handlers.change_timezone.router import user_router
-from bot_frontend.handlers.tasks import task_config
-from bot_frontend.utils.request import do_request
+from core.buttons import timezone_kb, CHANGE_TIME_ZONE, timezone_hours
+from core.config import settings
+from handlers.change_timezone.router import user_router
+from handlers.tasks import task_config
+from utils.request import do_request
 
 
 @user_router.message(F.text == CHANGE_TIME_ZONE)

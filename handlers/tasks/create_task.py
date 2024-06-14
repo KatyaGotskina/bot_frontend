@@ -1,12 +1,12 @@
 from aiogram import types, F
 from aiogram.fsm.context import FSMContext
 
-from bot_frontend.core.buttons import START_TASK, during_the_task_keyboard, yes_no_keyboard, go_back_keyboard, GO_BACK
-from bot_frontend.core.config import settings
-from bot_frontend.handlers.tasks import task_config
-from bot_frontend.handlers.tasks.router import task_router
-from bot_frontend.states.do_tasks import TaskState
-from bot_frontend.utils.request import do_request
+from core.buttons import START_TASK, during_the_task_keyboard, yes_no_keyboard, go_back_keyboard, GO_BACK
+from core.config import settings
+from handlers.tasks import task_config
+from handlers.tasks.router import task_router
+from states.do_tasks import TaskState
+from utils.request import do_request
 
 
 @task_router.message(F.text == START_TASK)

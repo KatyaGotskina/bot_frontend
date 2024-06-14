@@ -1,9 +1,9 @@
 from aiogram import F, types
 from aiogram.fsm.context import FSMContext
 
-from bot_frontend.core.buttons import GO_BACK
-from bot_frontend.handlers.base_functional.router import base_router
-from bot_frontend.states.utils import state_to_keyboard, state_to_massage, previous_states
+from core.buttons import GO_BACK
+from handlers.base_functional.router import base_router
+from states.utils import state_to_keyboard, state_to_massage, previous_states
 
 
 @base_router.message(F.text == GO_BACK)

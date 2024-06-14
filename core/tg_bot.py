@@ -5,14 +5,26 @@ from aiogram import Bot, F
 from aiogram import Dispatcher
 from aiogram.types import BotCommand
 
-from bot_frontend.core.buttons import *
-from bot_frontend.core.config import settings
-from bot_frontend.handlers.base_functional.router import base_router
-from bot_frontend.handlers.change_timezone.router import user_router
-from bot_frontend.handlers.tasks.router import task_router
+from core.buttons import *
+from core.config import settings
+from handlers.base_functional.router import base_router
+from handlers.change_timezone.router import user_router
+from handlers.tasks.router import task_router
 
 bot = Bot(token=settings.BOT_TOKEN)
 dp = Dispatcher(bot=bot)
+
+
+def get_dispatcher() -> Dispatcher:
+    global dp
+
+    return dp
+
+
+def get_tg_bot() -> Bot:
+    global bot
+
+    return bot
 
 
 async def main():

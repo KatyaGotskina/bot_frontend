@@ -1,9 +1,9 @@
 from aiogram import F, types
 from aiogram.fsm.context import FSMContext
 
-from bot_frontend.core.buttons import TO_TASKS, during_the_task_keyboard
-from bot_frontend.handlers.base_functional.router import base_router
-from bot_frontend.states.do_tasks import TaskState
+from core.buttons import TO_TASKS, during_the_task_keyboard
+from handlers.base_functional.router import base_router
+from states.do_tasks import TaskState
 
 
 @base_router.message(F.text == TO_TASKS)

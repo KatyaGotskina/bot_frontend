@@ -1,13 +1,13 @@
 from aiogram import types, F
 from aiogram.fsm.context import FSMContext
 
-from bot_frontend.core.buttons import during_the_task_keyboard, get_tasks_keyboard, FORWARD, GO_BACK, STATISTICS
-from bot_frontend.core.config import settings
-from bot_frontend.handlers.tasks import task_config
-from bot_frontend.handlers.tasks.general import make_message_and_get_data
-from bot_frontend.handlers.tasks.router import task_router
-from bot_frontend.states.do_tasks import TaskState
-from bot_frontend.utils.request import do_request
+from core.buttons import during_the_task_keyboard, get_tasks_keyboard, FORWARD, GO_BACK, STATISTICS
+from core.config import settings
+from handlers.tasks import task_config
+from handlers.tasks.general import make_message_and_get_data
+from handlers.tasks.router import task_router
+from states.do_tasks import TaskState
+from utils.request import do_request
 
 
 @task_router.message(F.text == STATISTICS)

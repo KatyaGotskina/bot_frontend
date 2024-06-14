@@ -4,14 +4,14 @@ services:
   bot:
     container_name: bot
     build:
-      dockerfile: docker/Dockerfile
+      dockerfile: ./Dockerfile
       context: .
     ports:
       - "8005:8005"
     command: scripts/web/startup.sh -m -l
     restart: on-failure
     env_file:
-      - ./conf/.env
+      - ./core/.env
     volumes:
       - .:/code
     networks:

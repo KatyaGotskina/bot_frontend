@@ -1,6 +1,6 @@
-from bot_frontend.core.buttons import during_the_task_keyboard, get_main_keyboard
-from bot_frontend.states.do_tasks import TaskState
-from bot_frontend.states.general import MainState
+from core.buttons import during_the_task_keyboard, get_main_keyboard
+from states.do_tasks import TaskState
+from states.general import MainState
 
 previous_states = {
     'TaskState:conflict_task': TaskState.enter_task_name,

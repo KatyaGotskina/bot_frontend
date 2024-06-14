@@ -3,7 +3,7 @@ from typing import Any, Dict, Optional
 
 import aiohttp
 
-from bot_frontend.core.config import settings
+from core.config import settings
 
 
 @asynccontextmanager

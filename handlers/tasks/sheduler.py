@@ -36,5 +36,5 @@ async def send_statistic_message(bot: Bot):
                     await bot.send_message(user_info['chat_id'], text_base)
 
 
-scheduler.add_job(send_statistic_message, trigger='cron', hour=20, minute=57, kwargs={'bot': bot})
+scheduler.add_job(send_statistic_message, trigger='cron', hour=18, minute=0, kwargs={'bot': bot})
 

@@ -10,6 +10,7 @@ from bot_api.router import tg_router
 from core.tg_bot import bot
 from core.webhook import setup_webhook
 from core.background_tasks import tg_background_tasks
+from middleware.logger import LogServerMiddleware
 
 
 def setup_middleware(app: FastAPI) -> None:
@@ -20,6 +21,7 @@ def setup_middleware(app: FastAPI) -> None:
         allow_methods=['*'],  # type: ignore
         allow_headers=['*'],  # type: ignore
     )
+    app.add_middleware(LogServerMiddleware)
 
 
 def setup_routers(app: FastAPI) -> None:

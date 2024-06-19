@@ -11,6 +11,7 @@ class Settings(BaseSettings):
     BOT_BACKEND_HOST: str
     RETRY_COUNT: int = 3
     AUTH_KEY: str
+    LOG_LEVEL: str
 
 
 settings = Settings()

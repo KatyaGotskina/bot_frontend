@@ -30,6 +30,7 @@ async def do_request(
             except aiohttp.ClientResponseError as exc:
                 final_exc = exc
 
+    await session.close()
     if final_exc is not None:
         raise final_exc
     raise RuntimeError('Unsupported')

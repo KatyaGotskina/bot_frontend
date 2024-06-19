@@ -17,7 +17,7 @@ async def show_tasks(message: types.Message, state: FSMContext) -> None:
     async with do_request(
             url=f'{settings.BOT_BACKEND_HOST}/task/all',
             method='GET',
-            headers={'user_from_id': str(message.from_user.id)},
+            headers={'user_from_id': str(message.from_user.id), 'auth_key': settings.AUTH_KEY},
     ) as response:
         if response.status == 200:
             tasks = await response.json()
@@ -46,7 +46,7 @@ async def get_and_show_tasks(message: types.Message, state: FSMContext) -> None:
         async with do_request(
             url=f'{settings.BOT_BACKEND_HOST}/task/all?offset={max_counter}',
             method='GET',
-            headers={'user_from_id': str(message.from_user.id)}
+            headers={'user_from_id': str(message.from_user.id), 'auth_key': settings.AUTH_KEY}
         ) as response:
             tasks = await response.json()
             if not tasks:

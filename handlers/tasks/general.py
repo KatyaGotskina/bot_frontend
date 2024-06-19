@@ -13,10 +13,13 @@ async def make_message_and_get_data(
     for task in tasks:
         task_start = await get_str_time(task['start'])
         task_end = await get_str_time(task['end']) if task['end'] else "Еще не завершено"
+        timezone_offset = str(task['timezone_offset']) if task['timezone_offset'] < 0 else f'+{task["timezone_offset"]}'
         if not add_task_end:
-            message_text += f"""{max_counter}. "{task['name']}"\n Время начала: {task_start}\n\n"""
+            message_text += f"""
+            {max_counter}. "{task['name']}"\n Время начала: {task_start} (UTC {timezone_offset})\n\n
+            """
         else:
-            message_text += f"""{max_counter}. "{task['name']}"\n Время начала: {task_start}\n Время конца: {task_end}\n\n"""
+            message_text += f"""{max_counter}. "{task['name']}"\n Время начала: {task_start} (UTC {timezone_offset})\n Время конца: {task_end} (UTC {timezone_offset})\n\n"""
         data_for_state[f"{chat_id}_task_{max_counter}"] = task['id']
         max_counter += 1
     message_text += "..."

@@ -10,6 +10,7 @@ class Settings(BaseSettings):
     WEBHOOK_URL: str
     BOT_BACKEND_HOST: str
     RETRY_COUNT: int = 3
+    AUTH_KEY: str
 
 
 settings = Settings()

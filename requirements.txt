@@ -4,3 +4,5 @@ aiohttp==3.9.3
 PyYAML==6.0.1
 APScheduler==3.10.4
 starlette==0.37.2
+redis==5.0.1
+

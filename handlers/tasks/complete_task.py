@@ -17,7 +17,7 @@ async def complete_task(message: types.Message, state: FSMContext) -> None:
     async with do_request(
             url=f'{settings.BOT_BACKEND_HOST}/task/all?undone=True',
             method='GET',
-            headers={'user_from_id': str(message.from_user.id), 'auth_key': settings.AUTH_KEY}
+            headers={'user_from_id': str(message.from_user.id), 'Authorization': f'Bearer {settings.AUTH_KEY}'}
     ) as response:
         if response.status == 200:
             tasks = await response.json()
@@ -42,7 +42,7 @@ async def get_and_complete_task(message: types.Message, state: FSMContext) -> No
                 url=f'{settings.BOT_BACKEND_HOST}/task/end',
                 method='PATCH',
                 params={'id': task_id},
-                headers={'user_from_id': str(message.from_user.id), 'auth_key': settings.AUTH_KEY}
+                headers={'user_from_id': str(message.from_user.id), 'Authorization': f'Bearer {settings.AUTH_KEY}'}
             ) as response:
                 if response.status == 200:
                     await message.answer('Дело завершено', reply_markup=get_tasks_keyboard())
@@ -57,7 +57,7 @@ async def get_and_complete_task(message: types.Message, state: FSMContext) -> No
         async with do_request(
             url=f'{settings.BOT_BACKEND_HOST}/task/all?offset={max_counter}&undone=True',
             method='GET',
-            headers={'user_from_id': str(message.from_user.id), 'auth_key': settings.AUTH_KEY},
+            headers={'user_from_id': str(message.from_user.id), 'Authorization': f'Bearer {settings.AUTH_KEY}'},
         ) as response:
             tasks = await response.json()
             if not tasks:

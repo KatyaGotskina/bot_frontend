@@ -13,5 +13,10 @@ class Settings(BaseSettings):
     AUTH_KEY: str
     LOG_LEVEL: str
 
+    REDIS_HOST: str
+    REDIS_PORT: int
+    REDIS_PASSWORD: str
+    REDIS_DB: int
+
 
 settings = Settings()

@@ -15,8 +15,8 @@ services:
     volumes:
       - .:/code
     networks:
-      - sirius_network
+      - time_management_network
 
 networks:
-  sirius_network:
-    external: True
+  time_management_network:
+    external: Trued

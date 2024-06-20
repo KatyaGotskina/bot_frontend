@@ -10,7 +10,7 @@ async def send_statistic_message(bot: Bot):
     async with do_request(
             url=f'{settings.BOT_BACKEND_HOST}/user/chats',
             method='GET',
-            headers={'auth_key': settings.AUTH_KEY},
+            headers={'Authorization': f'Bearer {settings.AUTH_KEY}'},
     ) as response:
         if response.status != 200:
             return
@@ -19,7 +19,7 @@ async def send_statistic_message(bot: Bot):
             async with do_request(
                     url=f'{settings.BOT_BACKEND_HOST}/task/all?undone=True',
                     method='GET',
-                    headers={'user_from_id': str(user_info['user_id']), 'auth_key': settings.AUTH_KEY}
+                    headers={'user_from_id': str(user_info['user_id']), 'Authorization': f'Bearer {settings.AUTH_KEY}'}
             ) as tasks_response:
                 if tasks_response.status != 200:
                     return

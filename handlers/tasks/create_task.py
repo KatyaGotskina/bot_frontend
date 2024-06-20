@@ -31,7 +31,7 @@ async def get_name(message: types.Message, state: FSMContext) -> None:
             headers={
                 'user_from_id': str(message.from_user.id),
                 'user_chat_id': str(message.chat.id),
-                'auth_key': settings.AUTH_KEY
+                'Authorization': f'Bearer {settings.AUTH_KEY}'
             }
     ) as response:
         if response.status == 201:
@@ -55,7 +55,7 @@ async def work_with_conflict_task(message: types.Message, state: FSMContext) -> 
         async with do_request(
             url=f'{settings.BOT_BACKEND_HOST}/task',
             params={'name': task_name, 'forcibly': True},
-            headers={'user_from_id': str(message.from_user.id), 'auth_key': settings.AUTH_KEY},
+            headers={'user_from_id': str(message.from_user.id), 'Authorization': f'Bearer {settings.AUTH_KEY}'},
         ) as response:
             if response.status == 201:
                 await state.set_state(TaskState.task_worker)

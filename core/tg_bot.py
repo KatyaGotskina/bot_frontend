@@ -2,11 +2,13 @@ import asyncio
 
 from aiogram import Bot, F
 from aiogram import Dispatcher
+from aiogram.fsm.storage.redis import RedisStorage
 from aiogram.types import BotCommand
 
 from core.buttons import *
 from core.config import settings
 from core.logger import setup_logger
+from core.redis_connection import redis
 from core.sheduler import scheduler
 from handlers.base_functional.router import base_router
 from handlers.change_timezone.router import user_router
@@ -14,7 +16,8 @@ from handlers.tasks.router import task_router
 from middleware.logger import LogMessageMiddleware
 
 bot = Bot(token=settings.BOT_TOKEN)
-dp = Dispatcher(bot=bot)
+storage = RedisStorage(redis)
+dp = Dispatcher(storage=storage, bot=bot)
 
 
 def get_dispatcher() -> Dispatcher:

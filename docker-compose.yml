@@ -7,7 +7,7 @@ services:
       dockerfile: ./Dockerfile
       context: .
     ports:
-      - "8005:8005"
+      - "8010:8005"
     command: scripts/web/startup.sh -m -l
     restart: on-failure
     env_file:
@@ -19,4 +19,4 @@ services:
 
 networks:
   time_management_network:
-    external: Trued
+    external: True

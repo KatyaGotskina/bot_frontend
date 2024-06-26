@@ -13,7 +13,7 @@ from core.tg_bot import get_dispatcher, get_tg_bot
 from core.background_tasks import tg_background_tasks
 
 
-@tg_router.post('/tg')
+@tg_router.post('/katya/tg')
 async def tg_api(
     request: Request,
     dp: Dispatcher = Depends(get_dispatcher),
